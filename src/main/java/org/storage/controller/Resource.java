@@ -1,6 +1,7 @@
 package org.storage.controller;
 
-import java.io.File;
+import javax.activation.MimetypesFileTypeMap;
+import java.net.URLConnection;
 
 /**
  * User: frederik.anrys
@@ -31,5 +32,29 @@ public class Resource
     }
     public String getType(){
         return isFile ? "file" : "directory";
+    }
+
+    public String getContentType()
+    {
+        String g = URLConnection.guessContentTypeFromName(fileName);
+        if( g == null)
+        {
+            g = MimetypesFileTypeMap.getDefaultFileTypeMap().getContentType(fileName);
+        }
+        return g;
+    }
+
+    /*
+ * Get the extension of a file.
+ */
+    public  String getExtension() {
+        String ext = null;
+        String s = getName();
+        int i = s.lastIndexOf('.');
+
+        if (i > 0 &&  i < s.length() - 1) {
+            ext = s.substring(i+1).toLowerCase();
+        }
+        return ext;
     }
 }

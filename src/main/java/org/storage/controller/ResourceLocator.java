@@ -45,7 +45,7 @@ public class ResourceLocator extends HttpServlet
 
         model.put("parent", new Resource("mountpoints", getRootUrl(), false));
         model.put("resources", resources);
-        return "simple";
+        return "complex";
     }
 
 
@@ -92,13 +92,15 @@ public class ResourceLocator extends HttpServlet
             ArrayList<Resource> resources = new ArrayList<Resource>();
 
             final File[] files = root.listFiles();
-            for (final File fileEntry : files)
-            {
-                resources.add(new Resource(fileEntry.getName(), getUrl(mountpoint, path + "/" + fileEntry.getName()), fileEntry.isFile()));
+            if (files != null){
+                for (final File fileEntry : files)
+                {
+                    resources.add(new Resource(fileEntry.getName(), getUrl(mountpoint, path + "/" + fileEntry.getName()), fileEntry.isFile()));
+                }
             }
             model.put("resources", resources);
 
-            return "simple";
+            return "complex";
         } else{ // file
 
                 try {

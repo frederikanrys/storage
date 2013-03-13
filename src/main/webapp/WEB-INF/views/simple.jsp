@@ -11,7 +11,7 @@
 
     <c:forEach var="resource" items="${resources}">
         <c:if test="${resource.type == 'directory'}">
-            <li><a href="${resource.url}"> (dir) ${resource.name} </a></li>
+            <li><a href="${resource.url}">${resource.name}/</a></li>
         </c:if>
     </c:forEach>
 
