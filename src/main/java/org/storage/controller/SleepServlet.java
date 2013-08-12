@@ -21,7 +21,7 @@ public class SleepServlet extends HttpServlet
     {
         logger.debug("Going to sleep");
 
-      //  Runtime.getRuntime().exec("Rundll32.exe powrprof.dll,SetSuspendState Sleep");
+        Runtime.getRuntime().exec("Rundll32.exe powrprof.dll,SetSuspendState Sleep");
 
         return "sleep";
     }
